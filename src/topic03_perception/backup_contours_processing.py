@@ -89,3 +89,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()

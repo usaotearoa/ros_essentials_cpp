@@ -4,7 +4,7 @@ using namespace cv;
 
 int main(int, char**)
 {
-    VideoCapture video_capture(0); // open the default camera
+    VideoCapture video_capture(2); // open the default camera
     if(!video_capture.isOpened())  // check if we succeeded
         return -1;
 
@@ -12,11 +12,13 @@ int main(int, char**)
     namedWindow("edges",1);
     while(true)
     {
-        Mat frame;
+        Mat frame, frame_r;
         video_capture >> frame; // get a new frame from camera
-        cvtColor(frame, gray_image, COLOR_BGR2GRAY);
+        resize(frame, frame_r, Size(), 0.35, 0.35);
+        cvtColor(frame_r, gray_image, COLOR_BGR2GRAY);
         //GaussianBlur(edges, edges, Size(7,7), 1.5, 1.5);
         //Canny(edges, edges, 0, 30, 3);
+        
         imshow("gray image", gray_image);
         if(waitKey(30) >= 0) break;
     }

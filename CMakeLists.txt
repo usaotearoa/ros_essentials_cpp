@@ -9,9 +9,8 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib_msgs
   cv_bridge
   image_transport
-  message_generation
+  message_generation  # needed for generating custom messages
 )
-
 
 ## Generate messages in the 'msg' folder
  add_message_files(
@@ -23,6 +22,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES 
    AddTwoInts.srv
+   RectangleAreaService.srv
    )
 
 ## Generate actions in the 'action' folder
@@ -45,7 +45,7 @@ add_action_files(
 catkin_package(
   INCLUDE_DIRS include
   LIBRARIES ros_essentials_cpp
-  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+  CATKIN_DEPENDS roscpp rospy std_msgs message_runtime   # message_runtime needed for generating custom messages
   DEPENDS system_lib
 )
 
@@ -75,9 +75,18 @@ add_executable(talker_node src/topic01_basics/talker_listener/talker.cpp)
 target_link_libraries (talker_node ${catkin_LIBRARIES})
 #add_dependencies(talker gaitech_doc_generate_message_cpp)
 
+#talker_own
+add_executable(talker_node_own src/topic01_basics/talker_listener/talker_own.cpp)
+target_link_libraries (talker_node_own ${catkin_LIBRARIES})
+#add_dependencies(talker gaitech_doc_generate_message_cpp)
+
 #listener
 add_executable(listener_node src/topic01_basics/talker_listener/listener.cpp)
 target_link_libraries (listener_node ${catkin_LIBRARIES})
+
+#listener_own
+add_executable(listener_node_own src/topic01_basics/talker_listener/listener_own.cpp)
+target_link_libraries (listener_node_own ${catkin_LIBRARIES})
 
 
 #robot cleaner

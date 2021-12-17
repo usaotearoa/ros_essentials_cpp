@@ -1,7 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python 
 
+import rospy
 import numpy as np
 import cv2
+import time
 
 def read_rgb_image(image_name, show):
     rgb_image = cv2.imread(image_name)
@@ -58,18 +60,38 @@ def get_contour_center(contour):
         cy= int(M['m01']/M['m00'])
     return cx, cy
 
-
-def main():
-    image_name = "images/tennisball05.jpg"
-    yellowLower = (30, 150, 100)
-    yellowUpper = (50, 255,255)
-    rgb_image = read_rgb_image(image_name, True)
+def detect_ball_in_a_frame(image_frame):
+    yellowLower =(30, 100, 50)
+    yellowUpper = (60, 255, 255)
+    rgb_image = image_frame
     binary_image_mask = filter_color(rgb_image, yellowLower, yellowUpper)
     contours = getContours(binary_image_mask)
-    draw_ball_contour(binary_image_mask, rgb_image, contours)
+    draw_ball_contour(binary_image_mask, rgb_image,contours)
 
-    cv2.waitKey(0)
+def main():
+    # get parameter from launch file or cmd_line
+    stream_source = rospy.get_param("video_source")
+
+    if (stream_source == ''):
+        stream_source = "/home/administrator/catkin_ws/src/ros_essentials_cpp/src/topic03_perception/video/tennis-ball-video.mp4"
+
+    # these also work
+    #video_capture = cv2.VideoCapture(2)
+    #video_capture = cv2.VideoCapture('../video/ros.mp4')
+    #video_capture = cv2.VideoCapture('../video/tennis-ball-video.mp4')
+    video_capture = cv2.VideoCapture(stream_source)
+
+    while(True):
+        ret, frame = video_capture.read()
+        detect_ball_in_a_frame(frame)
+        time.sleep(0.033)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
     cv2.destroyAllWindows()
+
+    return 0
 
 if __name__ == '__main__':
     main()
+

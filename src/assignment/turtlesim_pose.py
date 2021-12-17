@@ -5,7 +5,7 @@ from turtlesim.msg import Pose
 
 
 def poseCallback(pose_message):
-    print "pose callback"
+    print ("pose callback")
     print ('x = {}'.format(pose_message.x)) #new in python 3
     print ('y = %f' %pose_message.y) #used in python 2
     print ('yaw = {}'.format(pose_message.theta)) #new in python 3

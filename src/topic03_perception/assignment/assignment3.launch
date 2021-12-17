@@ -1,0 +1,8 @@
+<launch>
+    <!-- Define the source of the video -->
+    <!-- # 1) video file -->
+    <param name="video_source" value="/home/administrator/catkin_ws/src/ros_essentials_cpp/src/topic03_perception/video/tennis-ball-video.mp4"/>
+    <!-- # 2) video stream -->
+    <!--<param name="video_source" value="2"/>-->
+    <node pkg="ros_essentials_cpp" type="assignment3_read_video.py" name="read_video_node" output="screen" />
+</launch>

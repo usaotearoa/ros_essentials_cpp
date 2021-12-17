@@ -12,10 +12,12 @@
                 ]
             },
             "includePath": [
-                "/home/riotu/catkin_ws/devel/include",
-                "/opt/ros/kinetic/include",
-                "/home/riotu/catkin_ws/src/ros_essentials_cpp/include",
-                "/usr/include"
+                "/home/administrator/catkin_ws/devel/include",
+                "/opt/ros/noetic/include",
+                "/home/administrator/catkin_ws/src/ros_essentials_cpp/include",
+                "/usr/include",
+                "/usr/include/opencv4",
+                "/home/administrator/Arduino/libraries"
             ],
             "name": "Linux",
             "intelliSenseMode": "clang-x64",

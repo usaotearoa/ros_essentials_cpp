@@ -7,6 +7,7 @@ import numpy as np
 import cv2
 
 image_name = "blackwhite"
+#image_name = "tree"
 
 print ('read an image from file')
 img = cv2.imread("images/"+image_name+".jpg")
