@@ -72,7 +72,7 @@ def detect_ball_in_a_frame(image_frame):
 
 
 def main():
-    video_capture = cv2.VideoCapture(0)
+    video_capture = cv2.VideoCapture(2)
     #video_capture = cv2.VideoCapture('video/tennis-ball-video.mp4')
 
     while(True):
